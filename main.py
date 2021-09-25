@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import requests 
 
 
@@ -17,8 +17,12 @@ def auth():
     )
 
 
-@app.route('/', methods=['post'])
+@app.route('/', methods=['post', 'get'])
 def hello_world():
+    if request.method == 'GET':
+        return jsonify({
+            'hello': 'world'
+        })
     data = request.json
     lan, lon = data.get('lan', 0), data.get('lon', 0)
     if abs(lan-LAN) > 0.0002 or abs(LON-lon) > 0.0002:
@@ -29,7 +33,13 @@ def hello_world():
                 'value': -2, 
             }
         )
+        return jsonify({
+            'you': 'bad'
+        })
 
+    return jsonify({
+        'you': 'good'
+    })
 
 if __name__ == 'main':
     auth()
