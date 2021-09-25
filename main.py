@@ -7,7 +7,7 @@ app = Flask(__name__)
 LAN, LON = (56.048822, 92.919185)
 
 def auth():
-    request.post(
+    requests.post(
         'https://api-digit.siberian-hub.ru/v1/module/',
         data={
             'type': 'Дисциплинированность',
