@@ -40,7 +40,3 @@ def hello_world():
     return jsonify({
         'you': 'good'
     })
-
-if __name__ == 'main':
-    auth()
-    app.run(host='0.0.0.0')
